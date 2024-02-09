@@ -42,16 +42,11 @@ void User::purchaseItem(){
             std::vector<Product*>::iterator temp = itr;
             (*itr)->subtractQty(1);
             deductAmount((*itr)->getPrice());
-            
             itr = cart.erase(temp);
-            // return; // break;
         } else {
             itr++;
         }
     }
-    // for(itr = cart.begin(); itr != cart.end(); itr++){
-       
-    // }
 }
 
 void User::addToCart(Product* p){
@@ -60,7 +55,7 @@ void User::addToCart(Product* p){
 }
 
 void User::viewCart(){
-    std::cout << getName() << "'s cart:" << std::endl;
+    // std::cout << getName() << "'s cart:" << std::endl;
     size_t i = 1;
     std::vector<Product*>::iterator itr;
     for(itr = cart.begin(); itr != cart.end(); itr++){
