@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
                 for(itr = ds.getUsers().begin(); itr != ds.getUsers().end(); itr++){
                     if((*itr)->getName() == username){
                         hasFoundUser = true;
-                        (*itr)->addToCart(hits[hitNumber - 1]);
+                        ds.addToCart(*itr, hits[hitNumber - 1]);
                         std::cout << "Added to Cart!" << std::endl;
                         break;
                     }
@@ -152,7 +152,7 @@ int main(int argc, char* argv[])
                 for(itr = ds.getUsers().begin(); itr != ds.getUsers().end(); itr++){
                     if((*itr)->getName() == username){
                         hasFoundUser = true;
-                        (*itr)->viewCart();
+                        ds.viewCart(*itr);
                         break;
                     }
                 }
@@ -175,7 +175,7 @@ int main(int argc, char* argv[])
                 for(itr = ds.getUsers().begin(); itr != ds.getUsers().end(); itr++){
                     if((*itr)->getName() == username){
                         hasFoundUser = true;
-                        (*itr)->purchaseItem();
+                        ds.purchaseItem(*itr);
                         // std::cout << "Item Purchased" << std::endl;
                         break;
                     }
