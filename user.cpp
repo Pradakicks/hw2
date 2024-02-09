@@ -64,5 +64,5 @@ void User::viewCart(){
 
 void User::dump(std::ostream& os)
 {
-    os << name_ << " " << std::fixed << std::setprecision(2) << balance_ << " " << type_ << endl;
+    os << name_ << " "  << balance_ << " " << type_ << endl;
 }

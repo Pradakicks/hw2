@@ -79,7 +79,7 @@ std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int 
 
 void MyDataStore::dump(std::ostream &ofile)
 {
-    ofile << "<products>\n";
+    ofile << "<products>\n" << std::fixed << std::setprecision(2);
 
     std::set<Product *>::iterator productItr;
     for(productItr = store.begin(); productItr != store.end(); productItr++){
