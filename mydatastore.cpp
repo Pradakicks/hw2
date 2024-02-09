@@ -13,13 +13,13 @@ MyDataStore::MyDataStore(){
 
 MyDataStore::~MyDataStore()
 {
-//   for (Product* p : store) {
-//         delete p;
-//     }
+  for (Product* p : store) {
+        delete p;
+    }
 
-//     for (User* u : users) {
-//         delete u;
-//     }
+    for (User* u : users) {
+        delete u;
+    }
 
 }
 
