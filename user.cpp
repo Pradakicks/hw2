@@ -41,7 +41,7 @@ void User::purchaseItem(){
             (*itr)->subtractQty(1);
             deductAmount((*itr)->getPrice());
             cart.erase(itr);
-            return; // break;
+            // return; // break;
         }
     }
 }
