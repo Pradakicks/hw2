@@ -82,7 +82,7 @@ void MyDataStore::dump(std::ostream &ofile)
         (*productItr)->dump(ofile);
     }
     
-    ofile << "</products>\n<users>";
+    ofile << "</products>\n<users>\n";
 
     std::set<User *>::iterator userItr;
     for(userItr = users.begin(); userItr != users.end(); userItr++){
