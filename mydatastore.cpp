@@ -9,6 +9,7 @@
 #include "util.h"
 
 MyDataStore::MyDataStore(){
+    
 }
 
 MyDataStore::~MyDataStore()
@@ -101,4 +102,38 @@ void MyDataStore::dump(std::ostream &ofile)
 
 std::set<User*>&  MyDataStore::getUsers(){
     return users;
+}
+
+
+void MyDataStore::purchaseItem(User* u){
+
+
+    std::vector<Product*>::iterator itr;
+    itr = carts[u].begin();
+    while(itr != carts[u].end()){
+        if((*itr)->getPrice() < u->getBalance() & (*itr)->getQty() > 0){
+            std::vector<Product*>::iterator temp = itr;
+            (*itr)->subtractQty(1);
+            u->deductAmount((*itr)->getPrice());
+            itr = carts[u].erase(temp);
+        } else {
+            itr++;
+        }
+    }
+}
+
+void MyDataStore::addToCart(User* u, Product* p){
+    carts[u].push_back(p);
+    return;
+}
+
+void MyDataStore::viewCart(User* u){
+    // std::cout << getName() << "'s cart:" << std::endl;
+    size_t i = 1;
+    std::vector<Product*>::iterator itr;
+    for(itr =  carts[u].begin(); itr !=  carts[u].end(); itr++){
+        std::cout << "Item " << i << std::endl;
+        std::cout << (*itr)->displayString() << std::endl;
+        i++;
+    }
 }

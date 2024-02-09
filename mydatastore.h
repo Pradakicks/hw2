@@ -27,12 +27,17 @@ public:
     
     void dump(std::ostream& ofile);
 
+    void purchaseItem(User* u);
+    void addToCart(User* u, Product* p);
+    void viewCart(User* u);
+
 
 
 private:
     std::set<Product*> store;
     std::set<User*> users;
     std::map<std::string, std::set<Product*>> searchKeys;
+    std::map<User*, std::vector<Product*>> carts;
     std::set<std::string> keywordBank;
 };
 

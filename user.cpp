@@ -34,36 +34,6 @@ void User::deductAmount(double amt)
     balance_ -= amt;
 }
 
-void User::purchaseItem(){
-    std::vector<Product*>::iterator itr;
-    itr = cart.begin();
-    while(itr != cart.end()){
-        if((*itr)->getPrice() < getBalance() & (*itr)->getQty() > 0){
-            std::vector<Product*>::iterator temp = itr;
-            (*itr)->subtractQty(1);
-            deductAmount((*itr)->getPrice());
-            itr = cart.erase(temp);
-        } else {
-            itr++;
-        }
-    }
-}
-
-void User::addToCart(Product* p){
-    cart.push_back(p);
-    return;
-}
-
-void User::viewCart(){
-    // std::cout << getName() << "'s cart:" << std::endl;
-    size_t i = 1;
-    std::vector<Product*>::iterator itr;
-    for(itr = cart.begin(); itr != cart.end(); itr++){
-        std::cout << "Item " << i << std::endl;
-        std::cout << (*itr)->displayString() << std::endl;
-        i++;
-    }
-}
 
 
 void User::dump(std::ostream& os)

@@ -17,15 +17,11 @@ public:
     double getBalance() const;
     std::string getName() const;
     void deductAmount(double amt);
-    void purchaseItem();
-    void addToCart(Product* p);
-    void viewCart();
     virtual void dump(std::ostream& os);
 
 private:
     std::string name_;
     double balance_;
     int type_;
-    std::vector<Product*> cart;
 };
 #endif
