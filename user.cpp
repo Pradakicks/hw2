@@ -59,7 +59,8 @@ void User::viewCart(){
     size_t i = 1;
     std::vector<Product*>::iterator itr;
     for(itr = cart.begin(); itr != cart.end(); itr++){
-        std::cout << "Item #: " << i << "\n" << (*itr)->displayString() << std::endl;
+        std::cout << "Item " << i << std::endl;
+        std::cout << (*itr)->displayString() << std::endl;
         i++;
     }
 }
