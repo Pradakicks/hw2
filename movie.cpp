@@ -27,7 +27,7 @@ std::set<std::string> Movie::keywords() const {
 std::string Movie::displayString() const {
     std::stringstream buffer;
     buffer << name_ << std::endl;
-    buffer << "genre: " << genre_ << " rating: " << rating_ << std::endl;
+    buffer << "Genre: " << genre_ << " Rating: " << rating_ << std::endl;
     buffer << price_ << " " << qty_ << " left.";
     return buffer.str();
 }

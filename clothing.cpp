@@ -27,7 +27,7 @@ std::set<std::string> Clothing::keywords() const {
 std::string Clothing::displayString() const {
     std::stringstream buffer;
     buffer << name_ << std::endl;
-    buffer << "size: " << size_ << " brand: " << brand_ << std::endl;
+    buffer << "Size: " << size_ << " Brand: " << brand_ << std::endl;
     buffer << price_ << " " << qty_ << " left.";
     return buffer.str();
 }

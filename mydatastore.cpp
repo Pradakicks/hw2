@@ -53,7 +53,11 @@ std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int 
         validProducts = store;
     }
     for (itr = terms.begin(); itr != terms.end(); itr++){
-        std::string currentTerm = convToLower(*itr);
+        std::set<std::string> t = parseStringToWords(convToLower(*itr));
+        std::string currentTerm;
+        if(t.begin() != t.end()){
+            currentTerm =  *(t.begin());
+        }
 
         if(searchKeys[currentTerm].size() >= 1){
             if(type == 0){
