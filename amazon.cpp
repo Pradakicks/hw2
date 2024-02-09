@@ -9,6 +9,7 @@
 #include "db_parser.h"
 #include "product_parser.h"
 #include "util.h"
+#include "mydatastore.h"
 
 using namespace std;
 struct ProdNameSorter {
@@ -29,7 +30,8 @@ int main(int argc, char* argv[])
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
      ****************/
-    DataStore ds;
+    MyDataStore ds;
+    
 
 
 
@@ -100,10 +102,89 @@ int main(int argc, char* argv[])
                 done = true;
             }
 	    /* Add support for other commands here */
+            else if(cmd == "ADD"){
 
+                string username;
+                int hitNumber;
 
+                ss >> username;
+                ss >> hitNumber;
+                if(ss.fail()){
+                    std::cout << "Invalid request" << std::endl;
+                    continue;
+                }
 
+                if((hits.size() == 0) || (hitNumber > hits.size()) || (hitNumber < 1)){
+                    std::cout << "No Hits Vector. Please Search" << std::endl;
+                    continue;
+                }
 
+                // std::cout << username << " " << hitNumber << std::endl;
+                // std::cout << hits[hitNumber - 1]->displayString() << std::endl;
+
+                std::set<User*>::iterator itr;
+                bool hasFoundUser = false;
+                for(itr = ds.getUsers().begin(); itr != ds.getUsers().end(); itr++){
+                    if((*itr)->getName() == username){
+                        hasFoundUser = true;
+                        (*itr)->addToCart(hits[hitNumber - 1]);
+                        std::cout << "Added to Cart!" << std::endl;
+                        break;
+                    }
+                }
+
+                if(!hasFoundUser){
+                    std::cout << "Invalid request" << std::endl;
+                }
+
+            }
+            else if(cmd == "VIEWCART"){
+                string username;
+
+                ss >> username;
+                if(ss.fail()){
+                    std::cout << "Invalid request" << std::endl;
+                    continue;
+                }
+
+                bool hasFoundUser = false;
+                std::set<User*>::iterator itr;
+                for(itr = ds.getUsers().begin(); itr != ds.getUsers().end(); itr++){
+                    if((*itr)->getName() == username){
+                        hasFoundUser = true;
+                        (*itr)->viewCart();
+                        break;
+                    }
+                }
+                if(!hasFoundUser){
+                    // std::cout << "Invalid request" << std::endl;
+                    std::cout << "Invalid Username" << std::endl;
+                }
+            }
+            else if(cmd == "BUYCART"){
+                string username;
+
+                ss >> username;
+                if(ss.fail()){
+                    std::cout << "Invalid request" << std::endl;
+                    continue;
+                }
+
+                std::set<User*>::iterator itr;
+                bool hasFoundUser = false;
+                for(itr = ds.getUsers().begin(); itr != ds.getUsers().end(); itr++){
+                    if((*itr)->getName() == username){
+                        hasFoundUser = true;
+                        (*itr)->purchaseItem();
+                        // std::cout << "Item Purchased" << std::endl;
+                        break;
+                    }
+                }
+                if(!hasFoundUser){
+                    // std::cout << "Invalid request" << std::endl;
+                    std::cout << "Invalid Username" << std::endl;
+                }
+            }
             else {
                 cout << "Unknown command" << endl;
             }
