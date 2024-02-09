@@ -36,14 +36,22 @@ void User::deductAmount(double amt)
 
 void User::purchaseItem(){
     std::vector<Product*>::iterator itr;
-    for(itr = cart.begin(); itr != cart.end(); itr++){
+    itr = cart.begin();
+    while(itr != cart.end()){
         if((*itr)->getPrice() < getBalance() & (*itr)->getQty() > 0){
+            std::vector<Product*>::iterator temp = itr;
             (*itr)->subtractQty(1);
             deductAmount((*itr)->getPrice());
-            cart.erase(itr);
+            
+            itr = cart.erase(temp);
             // return; // break;
+        } else {
+            itr++;
         }
     }
+    // for(itr = cart.begin(); itr != cart.end(); itr++){
+       
+    // }
 }
 
 void User::addToCart(Product* p){
@@ -56,7 +64,7 @@ void User::viewCart(){
     size_t i = 1;
     std::vector<Product*>::iterator itr;
     for(itr = cart.begin(); itr != cart.end(); itr++){
-        std::cout << "Item #: " << i << "\n " << (*itr)->displayString() << std::endl;
+        std::cout << "Item #: " << i << "\n" << (*itr)->displayString() << std::endl;
         i++;
     }
 }
